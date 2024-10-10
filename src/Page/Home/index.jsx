@@ -1,7 +1,13 @@
+import { Link } from "react-router-dom"
 const Home = () =>{
     return(
         <>
-            <div> <h1>Ini home</h1></div>
+            <div>
+                <Link to={'/login'}>
+                <button>login yuk</button>
+                </Link>
+                
+            </div>
         </>
     )
 }
