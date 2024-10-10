@@ -22,7 +22,7 @@ const Login = () => {
       .get('https://reqres.in/api/login')
       .then((res)=> {
         console.log(res)
-        navigate("/")
+        navigate("/menu")
       })
       .catch((err)=> {
         console.log(err)
