@@ -1,32 +1,13 @@
-import { useState } from "react"
+import Navbar2 from "../../Components/Navbar2";
+
 
 const Menu = () => {
-    const [sidebar, setSidebar] = useState(false)
+  
+  return (
+    <>
+      <Navbar2/>
+    </>
+  );
+};
 
-    const handleSidebar = () => {
-        setSidebar(!sidebar)
-    }
-    return(
-        <>
-            <div className=" flex">
-                {
-                    sidebar && (
-
-                <div className="bg-[#F2EAE1] p-2 w-[30%]">
-                    <div>
-                        <h1 className="text-[10px]">UBAY OPERATIONS</h1>
-                    </div>
-                </div>
-                    )
-                }
-                <button onClick={handleSidebar}>test</button>
-
-                <div>
-
-                </div>
-            </div>
-        </>
-    )
-}
-
-export default Menu
+export default Menu;

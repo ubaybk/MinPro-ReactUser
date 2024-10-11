@@ -3,35 +3,35 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
-const Login = () => {
-  const [formLogin, setFormLogin] = useState({
+const Register = () => {
+  const [formRegister, setFormRegister] = useState({
     email: "",
     password: "",
   });
 
-  const [success, setSuccess] = useState(false);
-
   const navigate = useNavigate();
 
+  const [success, setSuccess] = useState(false);
+
+  const handleSuccess = () => {
+    setSuccess(!success);
+  };
+
   const handleChange = (e) => {
-    setFormLogin({
-      ...formLogin,
+    setFormRegister({
+      ...formRegister,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleLogin = () => {
+  const handleRegister = () => {
     axios
-      .post("https://reqres.in/api/login", formLogin)
+      .get("https://reqres.in/api/register", )
       .then((res) => {
         console.log(res);
-        const token = res.data.token;
-        localStorage.setItem("access_token", token);
-        {
-        }
-        setSuccess(true);
+        handleSuccess();
         setTimeout(() => {
-          navigate("/menu");
+          navigate("/login");
         }, 3000);
       })
       .catch((err) => {
@@ -48,7 +48,7 @@ const Login = () => {
               <h1 className="font-bold text-[20px]">UBAY OPERATIONS</h1>
             </div>
             <div className="mb-4">
-              <h1 className="font-semibold text-[16px]">SIGN IN</h1>
+              <h1 className="font-semibold text-[16px]">Register</h1>
               <h1 className="text-[#6C6C6C] text-[11px]">
                 Enter your credentials to access your account
               </h1>
@@ -86,7 +86,7 @@ const Login = () => {
             />
           </div>
           <div className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">
-            <button onClick={handleLogin}>SIGN IN</button>
+            <button onClick={handleRegister}>SIGN IN</button>
           </div>
           <div className="text-center text-[12px]">
             <p className="text-[#6C6C6C]">
@@ -94,9 +94,7 @@ const Login = () => {
               <span className="text-[#FEAF00]">Reset Password</span>{" "}
             </p>
           </div>
-          <div></div>
         </div>
-
         {success && (
           <div className="flex flex-col justify-center items-center mt-5 gap-3">
             <h1>Berhasil Login</h1>
@@ -108,4 +106,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;

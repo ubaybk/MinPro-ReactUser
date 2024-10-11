@@ -1,6 +1,8 @@
 import Home from "../Page/Home";
+import ListUser from "../Page/ListUser";
 import Login from "../Page/Login";
 import Menu from "../Page/Menu";
+import Register from "../Page/Register";
 import ProtectedRoute from "../routes/ProtectedRoute"
 
 export const routes = [
@@ -13,6 +15,10 @@ export const routes = [
         element: <Login/>
     },
     {
+        path: '/register',
+        element: <Register/>
+    },
+    {
         path: '/menu',
         element: (
             <ProtectedRoute>
@@ -20,5 +26,9 @@ export const routes = [
             </ProtectedRoute>
             
         ) 
+    },
+    {
+        path: '/listuser',
+        element: <ListUser/>
     }
 ]
