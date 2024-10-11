@@ -2,32 +2,48 @@ import { useState } from "react";
 import { FaWindowClose } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Navbar2 = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("access_token")
   const [sidebar, setSidebar] = useState(false);
 
   const handleSidebar = () => {
     setSidebar(!sidebar);
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    navigate("/");
+  };
   return (
     <>
       <div className=" flex justify-between items-center p-3">
         {sidebar && (
-          <div className="absolute top-0 left-0 bg-[#F2EAE1] p-2 w-[70%]">
-            <div className="flex justify-end">
-              <button onClick={handleSidebar}>
-                {sidebar ? <FaWindowClose /> : null}
-              </button>
-            </div>
+          <div className="absolute top-0 left-0 bg-[#F2EAE1] p-2 h-52 w-[70%] flex flex-col justify-between">
             <div>
-                <h1>Menu</h1>
+              <div className="flex justify-end">
+                <button onClick={handleSidebar}>
+                  {sidebar ? <FaWindowClose /> : null}
+                </button>
+              </div>
+              <Link to={"/menu"}>
+                <div>
+                  <h1>Menu</h1>
+                </div>
+              </Link>
+              <Link to={"/listuser"}>
+                <div>
+                  <h1>List User</h1>
+                </div>
+              </Link>
             </div>
-            <Link to={"/listuser"}>
+            {token ? (
             <div>
-                <h1>List User</h1>
+              <h1 onClick={handleLogout}>Logout</h1>
             </div>
-            
-            </Link>
+
+            ) : null}
           </div>
         )}
         <div>
