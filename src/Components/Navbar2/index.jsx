@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect  } from "react";
 import { FaWindowClose } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
@@ -16,6 +16,21 @@ const Navbar2 = () => {
     localStorage.removeItem("access_token");
     navigate("/");
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebar && !event.target.closest(".sidebar")) {
+        setSidebar(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [sidebar]);
+
   return (
     <>
       <div className=" flex justify-between items-center p-3">
@@ -53,6 +68,7 @@ const Navbar2 = () => {
         </div>
 
         <div>
+          
           <h1>Ubay Operations</h1>
         </div>
 

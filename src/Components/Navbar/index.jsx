@@ -12,8 +12,12 @@ const Navbar = () => {
       <div>
         <div>
           <div className="bg-yellow-400 ">
-            <div className="px-3 flex items-center justify-between">
-              <div>Ubay Operations </div>
+            <div className="px-3 py-4 flex items-center justify-between">
+              <div className="flex justify-center items-center gap-2">
+              <img src="/logo.png" alt="test" />
+              <h1 className="font-bold">Ubay Operations </h1>
+
+              </div>
               <button onClick={handleSidemenu}>
                 {sidemenu ? <FaWindowClose /> : <GiHamburgerMenu />}
               </button>
