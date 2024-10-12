@@ -17,19 +17,7 @@ const Navbar2 = () => {
     navigate("/");
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (sidebar && !event.target.closest(".sidebar")) {
-        setSidebar(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [sidebar]);
+  
 
   return (
     <>
@@ -48,7 +36,7 @@ const Navbar2 = () => {
                 </div>
               </Link>
               <Link to={"/listuser"}>
-                <div>
+                <div className="cursor-pointer">
                   <h1>List User</h1>
                 </div>
               </Link>

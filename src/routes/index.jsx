@@ -1,3 +1,4 @@
+import AddUser from "../Page/AddUser";
 import Home from "../Page/Home";
 import ListUser from "../Page/ListUser";
 import Login from "../Page/Login";
@@ -26,6 +27,10 @@ export const routes = [
             </ProtectedRoute>
             
         ) 
+    },
+    {
+        path: '/adduser',
+        element: <AddUser/>
     },
     {
         path: '/listuser',
