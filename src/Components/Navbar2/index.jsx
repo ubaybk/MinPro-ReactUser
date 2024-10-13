@@ -37,7 +37,12 @@ const Navbar2 = () => {
               </Link>
               <Link to={"/listuser"}>
                 <div className="cursor-pointer">
-                  <h1>List User</h1>
+                  <a>List User</a>
+                </div>
+              </Link>
+              <Link to={"/"}>
+                <div className="cursor-pointer">
+                  <a>Home</a>
                 </div>
               </Link>
             </div>
