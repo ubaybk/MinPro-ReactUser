@@ -8,6 +8,11 @@ import { Link } from "react-router-dom";
 
 const ListUser = () => {
   const [dataUser, setDataUser] = useState([]);
+  const [pagination, setPagination] = useState({
+    page: 1,
+    per_page: 4,
+    total:null
+  })
 
   const getDataMenu = () => {
     axios.get("https://reqres.in/api/users").then((res) => {
@@ -26,11 +31,11 @@ const ListUser = () => {
       <div>
         <div className=" bg-gray-300 py-3 flex justify-between items-center px-2">
           <h1 className="font-bold">User List</h1>
-          <Link to={'/adduser'}>
-          <div className="flex items-center gap-2 p-3 rounded-md text-white bg-[#FEAF00]">
-            <IoPersonAdd />
-            <button className="text-[12px]">ADD NEW USER</button>
-          </div>
+          <Link to={"/adduser"}>
+            <div className="flex items-center gap-2 p-3 rounded-md text-white bg-[#FEAF00]">
+              <IoPersonAdd />
+              <button className="text-[12px]">ADD NEW USER</button>
+            </div>
           </Link>
         </div>
         <div className="bg-gray-400 h-screen">
@@ -53,7 +58,10 @@ const ListUser = () => {
                   </h1>
                 </div>
                 <div className="flex flex-col gap-2 text-[#FEAF00]">
-                  <MdEdit />
+                  <Link to={`/detailuser/${item.id}`}>
+                    <MdEdit />
+                  </Link>
+                  
                   <MdDeleteForever />
                 </div>
               </div>

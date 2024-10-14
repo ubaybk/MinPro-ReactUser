@@ -4,6 +4,7 @@ import ListUser from "../Page/ListUser";
 import Login from "../Page/Login";
 import Menu from "../Page/Menu";
 import Register from "../Page/Register";
+import DetailUser from "../Page/DetailUser"
 import ProtectedRoute from "../routes/ProtectedRoute"
 
 export const routes = [
@@ -35,5 +36,9 @@ export const routes = [
     {
         path: '/listuser',
         element: <ListUser/>
+    },
+    {
+        path: '/detailuser/:id',
+        element: <DetailUser/>
     }
 ]

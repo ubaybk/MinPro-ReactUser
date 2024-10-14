@@ -10,6 +10,7 @@ const Login = () => {
   });
 
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(""); // State to manage error message
 
   const navigate = useNavigate();
 
@@ -21,14 +22,19 @@ const Login = () => {
   };
 
   const handleLogin = () => {
+    // Validate if email and password are filled in
+    if (!formLogin.email || !formLogin.password) {
+      setError("Email dan password harus diisi.");
+      return;
+    }
+
     axios
       .post("https://reqres.in/api/login", formLogin)
       .then((res) => {
         console.log(res);
         const token = res.data.token;
         localStorage.setItem("access_token", token);
-        {
-        }
+        setError(""); // Clear any previous error
         setSuccess(true);
         setTimeout(() => {
           navigate("/menu");
@@ -36,6 +42,7 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
+        setError("Username atau password salah."); // Set error message
       });
   };
 
@@ -54,6 +61,11 @@ const Login = () => {
               </h1>
             </div>
           </div>
+          {error && ( // Display error message if there is an error
+            <div className="text-red-500 text-center mb-4 text-[12px]">
+              {error}
+            </div>
+          )}
           <div>
             <label
               htmlFor="email"
@@ -85,9 +97,9 @@ const Login = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-[10px]"
             />
           </div>
-          <div className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">
-            <button onClick={handleLogin}>SIGN IN</button>
-          </div>
+          
+            <button onClick={handleLogin} className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">SIGN IN</button>
+          
           <div className="text-center text-[12px]">
             <p className="text-[#6C6C6C]">
               Forgot your password?{" "}
