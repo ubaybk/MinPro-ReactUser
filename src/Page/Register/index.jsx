@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import Navbar from "../../Components/Navbar"
 
 const Register = () => {
   const [formRegister, setFormRegister] = useState({
@@ -12,6 +13,7 @@ const Register = () => {
   const navigate = useNavigate();
 
   const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("")
 
   const handleSuccess = () => {
     setSuccess(!success);
@@ -24,12 +26,18 @@ const Register = () => {
     });
   };
 
+
   const handleRegister = () => {
+    if(!formRegister.email || !formRegister.password){
+      setErrorMessage("Email dan Password wajib diisi")
+      return
+    }
     axios
       .get("https://reqres.in/api/register", )
       .then((res) => {
         console.log(res);
         handleSuccess();
+        setErrorMessage("")
         setTimeout(() => {
           navigate("/login");
         }, 3000);
@@ -41,8 +49,9 @@ const Register = () => {
 
   return (
     <>
+    <Navbar/>
       <div className="h-screen bg-yellow-500 flex justify-center flex-col items-center">
-        <div className="border w-full bg-white rounded-xl flex flex-col p-6 mx-5 gap-3 ">
+        <div className="border w-full bg-white rounded-xl flex flex-col p-6 mx-5 gap-3 md:w-[700px]">
           <div className="text-center">
             <div className="mb-5">
               <h1 className="font-bold text-[20px]">UBAY OPERATIONS</h1>
@@ -88,6 +97,11 @@ const Register = () => {
           <div className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">
             <button onClick={handleRegister}>SIGN IN</button>
           </div>
+          {errorMessage && (
+            <div className="text-red-500 text-[12px] mt-2 text-center">
+              {errorMessage}
+            </div>
+          )}
           <div className="text-center text-[12px]">
             <p className="text-[#6C6C6C]">
               Forgot your password?{" "}
@@ -97,7 +111,7 @@ const Register = () => {
         </div>
         {success && (
           <div className="flex flex-col justify-center items-center mt-5 gap-3">
-            <h1>Berhasil Login</h1>
+            <h1>Berhasil Register</h1>
             <AiOutlineLoading3Quarters className="animate-spin" />
           </div>
         )}

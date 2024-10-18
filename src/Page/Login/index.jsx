@@ -2,12 +2,16 @@ import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import Navbar from "../../Components/Navbar";
 
 const Login = () => {
   const [formLogin, setFormLogin] = useState({
     email: "",
     password: "",
   });
+
+console.log(formLogin.email)
+
 
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState(""); // State to manage error message
@@ -33,7 +37,9 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         const token = res.data.token;
+        const email = formLogin.email
         localStorage.setItem("access_token", token);
+        localStorage.setItem("email", email)
         setError(""); // Clear any previous error
         setSuccess(true);
         setTimeout(() => {
@@ -48,8 +54,9 @@ const Login = () => {
 
   return (
     <>
+    <Navbar/>
       <div className="h-screen bg-yellow-500 flex justify-center flex-col items-center">
-        <div className="border w-full bg-white rounded-xl flex flex-col p-6 mx-5 gap-3 ">
+        <div className="border w-full bg-white rounded-xl flex flex-col p-6 mx-5 gap-3 md:w-[700px] ">
           <div className="text-center">
             <div className="mb-5">
               <h1 className="font-bold text-[20px]">UBAY OPERATIONS</h1>

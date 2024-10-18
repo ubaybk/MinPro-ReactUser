@@ -31,14 +31,26 @@ export const routes = [
     },
     {
         path: '/adduser',
-        element: <AddUser/>
+        element: (
+            <ProtectedRoute>
+                <AddUser/>
+            </ProtectedRoute>
+        ) 
     },
     {
         path: '/listuser',
-        element: <ListUser/>
+        element: (
+            <ProtectedRoute>
+                <ListUser/>
+            </ProtectedRoute>
+        )
     },
     {
         path: '/detailuser/:id',
-        element: <DetailUser/>
+        element: (
+            <ProtectedRoute>
+                <DetailUser/>
+            </ProtectedRoute>
+        ) 
     }
 ]

@@ -9,10 +9,10 @@ const Home = () => {
       <Navbar />
 
       <div className="flex flex-col gap-3">
-        <div className="bg-[#F5F7FA] flex flex-col justify-center items-center py-7 h-[400px] w-screen">
+        <div className="bg-[#F5F7FA] flex flex-col justify-center items-center py-7">
           <h1 className="font-semibold">Lessons and insights</h1>
           <h1>From 8 years</h1>
-          <div className="w-[70%]">
+          <div className="">
             <img src="./hero.png" alt="" />
           </div>
           <p></p>

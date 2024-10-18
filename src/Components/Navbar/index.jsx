@@ -3,7 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect, useState } from "react";
 import { FaWindowClose } from "react-icons/fa";
 const Navbar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [sidemenu, setSidemenu] = useState(false);
   const handleSidemenu = () => {
     setSidemenu(!sidemenu);
@@ -19,44 +19,62 @@ const Navbar = () => {
 
   return (
     <>
-      <div>
-        <div>
-          <div className="bg-yellow-400 ">
-            <div className="px-3 py-4 flex items-center justify-between">
-              <div className="flex justify-center items-center gap-2">
-                <img src="/logo.png" alt="test" />
-                <h1 className="font-bold">Ubay Operations </h1>
-              </div>
-              <button onClick={handleSidemenu}>
-                {sidemenu ? <FaWindowClose /> : <GiHamburgerMenu />}
-              </button>
-            </div>
+      <div className="bg-yellow-400 ">
+        <div className="px-3 py-4 flex items-center justify-between">
+          <div className="flex justify-center items-center gap-2">
+            <img src="/logo.png" alt="test" />
+            <h1 className="font-bold">Ubay Operations </h1>
           </div>
-          {sidemenu && (
-            <div className="absolute flex flex-col w-32 text-center right-0 bg-green-300">
-              {token ? (
-                <div className="flex flex-col">
-                  <Link to={"/menu"}>
-                    <button>menu</button>
-                  </Link>
-                  <Link to={"/"}>
-                    <button onClick={handleLogout}>logout</button>
-                  </Link>
-                </div>
-              ) : (
-                <div className="flex flex-col">
-                  <Link to={"/login"}>
-                    <button>login</button>
-                  </Link>
-                  <Link to={"/register"}>
-                    <button>register</button>
-                  </Link>
-                </div>
-              )}
+          <button className="md:hidden" onClick={handleSidemenu}>
+            {sidemenu ? <FaWindowClose /> : <GiHamburgerMenu />}
+          </button>
+          <div className="hidden md:block">
+          {token ? (
+            <div className="flex gap-5">
+              <Link to={"/menu"}>
+                <button>menu</button>
+              </Link>
+              <Link to={"/"}>
+                <button onClick={handleLogout}>logout</button>
+              </Link>
+            </div>
+          ) : (
+            <div className="flex gap-5 font-semibold">
+              <Link to={"/login"}>
+                <button>Login</button>
+              </Link>
+              <Link to={"/register"}>
+                <button>Register</button>
+              </Link>
+            </div>
+          )}
+          </div>
+        </div>
+      </div>
+
+      {sidemenu && (
+        <div className="absolute flex flex-col w-32 text-center right-0 font-semibold bg-green-300">
+          {token ? (
+            <div className="flex flex-col">
+              <Link to={"/menu"}>
+                <button>Menu</button>
+              </Link>
+              <Link to={"/"}>
+                <button onClick={handleLogout}>Logout</button>
+              </Link>
+            </div>
+          ) : (
+            <div className="flex flex-col">
+              <Link to={"/login"}>
+                <button>login</button>
+              </Link>
+              <Link to={"/register"}>
+                <button>register</button>
+              </Link>
             </div>
           )}
         </div>
-      </div>
+      )}
     </>
   );
 };
