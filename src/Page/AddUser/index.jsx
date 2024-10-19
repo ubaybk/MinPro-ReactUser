@@ -138,9 +138,9 @@ const AddUser = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-[10px]"
             />
           </div>
-          <div className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">
-            <button onClick={handleSubmit}>SIGN IN</button>
-          </div>
+          <button onClick={handleSubmit} className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">
+            SIGN IN
+          </button>
         </div>
       </div>
       <ToastContainer />
