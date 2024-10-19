@@ -95,7 +95,7 @@ const Register = () => {
             />
           </div>
           <div className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">
-            <button onClick={handleRegister}>SIGN IN</button>
+            <button onClick={handleRegister}>REGISTER</button>
           </div>
           {errorMessage && (
             <div className="text-red-500 text-[12px] mt-2 text-center">

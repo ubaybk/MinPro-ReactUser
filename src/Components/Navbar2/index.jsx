@@ -48,9 +48,14 @@ const Navbar2 = () => {
                     <FaWindowClose />
                   </button>
                 </div>
-                <div className="text-[#FEAF00] border-b-2 border-gray-300">
+                <div className="text-[#FEAF00] border-b-2 font-semibold border-gray-300">
                     {getEmail}
                 </div>
+                <Link to={"/"}>
+                  <div className="cursor-pointer">
+                    <a>Home</a>
+                  </div>
+                </Link>
                 <Link to={"/menu"}>
                   <div>
                     <h1>Menu</h1>
@@ -61,14 +66,10 @@ const Navbar2 = () => {
                     <a>List User</a>
                   </div>
                 </Link>
-                <Link to={"/"}>
-                  <div className="cursor-pointer">
-                    <a>Home</a>
-                  </div>
-                </Link>
+                
               </div>
               {token && (
-                <div>
+                <div className="font-semibold">
                   <h1 onClick={handleLogout}>Logout</h1>
                 </div>
               )}

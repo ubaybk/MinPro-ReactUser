@@ -53,7 +53,7 @@ const Navbar = () => {
       </div>
 
       {sidemenu && (
-        <div className="absolute flex flex-col w-32 text-center right-0 font-semibold bg-green-300">
+        <div className="absolute flex flex-col w-32 text-center right-0 font-semibold bg-yellow-300 rounded-md">
           {token ? (
             <div className="flex flex-col">
               <Link to={"/menu"}>
@@ -66,10 +66,10 @@ const Navbar = () => {
           ) : (
             <div className="flex flex-col">
               <Link to={"/login"}>
-                <button>login</button>
+                <button>Login</button>
               </Link>
               <Link to={"/register"}>
-                <button>register</button>
+                <button>Register</button>
               </Link>
             </div>
           )}
