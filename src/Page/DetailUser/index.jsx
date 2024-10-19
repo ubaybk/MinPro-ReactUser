@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar2 from "../../Components/Navbar2";
 import Breadcrumb from "../../Components/Breadcrumb";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const DetailUser = () => {
   const { id } = useParams();
@@ -39,14 +41,26 @@ const DetailUser = () => {
       .then((res) => {
         console.log(res);
         setHandleSave(true);
+        toast.success("User edited successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
         setTimeout(() => {
           navigate("/listuser");
         }, 3000);
-      });
+      })
+      .catch((err)=>{
+        console.log(err)
+        toast.error("Failed to edit user", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+      })
   };
 
   const getDetailMenu = () => {
-    axios(`https://reqres.in/api/users/${id}`)
+    axios
+    .get(`https://reqres.in/api/users/${id}`)
       .then((res) => {
         console.log(res);
         setDataDetailUser(res.data.data);
@@ -146,7 +160,6 @@ const DetailUser = () => {
               />
             </div>
           </div>
-          {handleSave && <h1>berhasil update</h1>}
           <div className="flex justify-center mt-4">
             <button
               onClick={buttonHandleSave}
@@ -156,6 +169,7 @@ const DetailUser = () => {
             </button>
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );

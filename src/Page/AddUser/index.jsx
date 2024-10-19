@@ -4,6 +4,8 @@ import axios from "axios";
 import Breadcrumb from "../../Components/Breadcrumb";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../Components/Footer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddUser = () => {
   const navigate = useNavigate();
@@ -35,19 +37,26 @@ const AddUser = () => {
       .then((res) => {
         console.log(res);
         setSuccess(true);
+        toast.success("User added successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
         setTimeout(() => {
           navigate("/listuser");
         }, 3000);
       })
       .catch((err) => {
         console.log(err);
+        toast.error("Failed to add user", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       });
   };
 
   return (
     <>
       <Navbar2 />
-
       <div className="mx-2 ">
         <div className="flex justify-end">
           <Breadcrumb items={breadcrumbItems} />
@@ -89,7 +98,7 @@ const AddUser = () => {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              First Name
+              Email
             </label>
             <input
               type="text"
@@ -132,14 +141,10 @@ const AddUser = () => {
           <div className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">
             <button onClick={handleSubmit}>SIGN IN</button>
           </div>
-          {success && (
-            <div>
-              <h1>berhasil tambah</h1>
-            </div>
-          )}
         </div>
       </div>
-      <Footer/>
+      <ToastContainer />
+      <Footer />
     </>
   );
 };

@@ -30,12 +30,12 @@ const Navbar = () => {
           </button>
           <div className="hidden md:block">
           {token ? (
-            <div className="flex gap-5">
+            <div className="flex gap-5 font-semibold">
               <Link to={"/menu"}>
-                <button>menu</button>
+                <button>Menu</button>
               </Link>
               <Link to={"/"}>
-                <button onClick={handleLogout}>logout</button>
+                <button onClick={handleLogout}>Logout</button>
               </Link>
             </div>
           ) : (
