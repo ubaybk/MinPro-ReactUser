@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Navbar from "../../Components/Navbar";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [formLogin, setFormLogin] = useState({
@@ -42,12 +44,20 @@ console.log(formLogin.email)
         localStorage.setItem("email", email)
         setError(""); // Clear any previous error
         setSuccess(true);
+        toast.success("Login successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
         setTimeout(() => {
           navigate("/menu");
         }, 3000);
       })
       .catch((err) => {
         console.log(err);
+        toast.error("Failed Login", {
+          position: "top-right",
+          autoClose: 3000,
+        });
         setError("Username atau password salah."); // Set error message
       });
   };
@@ -116,12 +126,7 @@ console.log(formLogin.email)
           <div></div>
         </div>
 
-        {success && (
-          <div className="flex flex-col justify-center items-center mt-5 gap-3">
-            <h1>Berhasil Login</h1>
-            <AiOutlineLoading3Quarters className="animate-spin" />
-          </div>
-        )}
+        <ToastContainer />
       </div>
     </>
   );

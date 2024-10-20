@@ -3,6 +3,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import Navbar from "../../Components/Navbar"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [formRegister, setFormRegister] = useState({
@@ -37,12 +39,20 @@ const Register = () => {
       .then((res) => {
         console.log(res);
         handleSuccess();
+        toast.success("Register successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
         setErrorMessage("")
         setTimeout(() => {
           navigate("/login");
         }, 3000);
       })
       .catch((err) => {
+        toast.error("Failed Register", {
+          position: "top-right",
+          autoClose: 3000,
+        });
         console.log(err);
       });
   };
@@ -94,9 +104,9 @@ const Register = () => {
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-[10px]"
             />
           </div>
-          <div className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">
-            <button onClick={handleRegister}>REGISTER</button>
-          </div>
+          <button onClick={handleRegister} className="bg-yellow-500 text-center py-1 text-[12px] text-white rounded-md">
+            REGISTER
+          </button>
           {errorMessage && (
             <div className="text-red-500 text-[12px] mt-2 text-center">
               {errorMessage}
@@ -109,12 +119,7 @@ const Register = () => {
             </p>
           </div>
         </div>
-        {success && (
-          <div className="flex flex-col justify-center items-center mt-5 gap-3">
-            <h1>Berhasil Register</h1>
-            <AiOutlineLoading3Quarters className="animate-spin" />
-          </div>
-        )}
+        <ToastContainer />
       </div>
     </>
   );

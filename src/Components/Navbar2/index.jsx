@@ -106,46 +106,45 @@ const Navbar2 = () => {
 
       {/* WEB */}
       <div className="hidden md:block">
-        <div className="flex justify-between items-center p-3">
-          <div className="flex items-center">
-            <img src="./logo.png" alt="" />
-            <Link to={"/"}>
-            <h1 className="ml-2 font-semibold">Ubay Operations</h1>
-            </Link>
-          </div>
-          <div className="flex gap-5">
-
-          <Link to={"/menu"}>
-            <div className="font-semibold">
-              <h1>Menu</h1>
-            </div>
-          </Link>
-          <Link to={"/listuser"}>
-            <div className="cursor-pointer font-semibold">
-              <a>List User</a>
-            </div>
-          </Link>
-          </div>
-
-          <div className="flex justify-center items-center gap-5">
-
-          <div className="text-[#FEAF00] font-semibold">
-          {getEmail}
-            </div>
-
-          {token && (
-            <div className="font-semibold">
-              <h1 onClick={handleLogout}>Logout</h1>
-            </div>
-          )}
-
-          {/* Search Icon */}
-          <div className="">
-            <IoSearch />
-          </div>
-          </div>
+  <div className="flex justify-between items-center p-3">
+    <div className="flex items-center">
+      <img src="./logo.png" alt="" />
+      <Link to={"/"}>
+        <h1 className="ml-2 font-semibold">Ubay Operations</h1>
+      </Link>
+    </div>
+    <div className="flex gap-5">
+      <Link to={"/menu"}>
+        <div className="font-semibold hover:border-b-2 hover:border-orange-500 transition duration-300">
+          <h1>Menu</h1>
         </div>
+      </Link>
+      <Link to={"/listuser"}>
+        <div className="cursor-pointer font-semibold hover:border-b-2 hover:border-orange-500 transition duration-300">
+          <a>List User</a>
+        </div>
+      </Link>
+    </div>
+
+    <div className="flex justify-center items-center gap-5">
+      <div className="text-[#FEAF00] font-semibold">
+        {getEmail}
       </div>
+
+      {token && (
+        <div className="cursor-pointer font-semibold hover:border-b-2 hover:border-orange-500 transition duration-300">
+          <h1 onClick={handleLogout}>Logout</h1>
+        </div>
+      )}
+
+      {/* Search Icon */}
+      <div className="">
+        <IoSearch />
+      </div>
+    </div>
+  </div>
+</div>
+
       
     </>
   );
